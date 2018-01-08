@@ -166,7 +166,8 @@ Notifications.localNotificationSchedule = function(details: Object) {
 			alertBody: details.message,
 			soundName: soundName,
 			userInfo: details.userInfo,
-			repeatInterval: details.repeatType
+      repeatInterval: details.repeatType,
+      category: details.category,
 		};
 
 		if(details.number) {
@@ -222,6 +223,7 @@ Notifications._onNotification = function(data, isFromBackground = null) {
 				data: data.getData(),
 				badge: data.getBadgeCount(),
 				alert: data.getAlert(),
+        category: (data.getCategory ? data.getCategory() : undefined),
 				sound: data.getSound(),
   			finish: (res) => data.finish(res)
 			});
